@@ -20,6 +20,6 @@ public class TpIntegrador3ArquitecturasWebApplication {
 
     @PostConstruct
     public void init()throws IOException{
-        cargaDeDatos.cargarDatosCSV();
+    cargaDeDatos.cargarDatosCSV();
     }
 }

@@ -15,11 +15,11 @@ public class EstudianteController {
     private EstudianteServicio estudianteServicio;
 
    @GetMapping("")
-    public Iterable<Estudiante>getEstudiantes(){
+    public ResponseEntity<?>getEstudiantes(){
        try {
-           return this.estudianteServicio.findAll();
+           return ResponseEntity.status(HttpStatus.OK).body(this.estudianteServicio.findAll());
        } catch (Exception e) {
-           throw new RuntimeException(e);
+           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error, no hay estudiantes");
        }
    }
 
@@ -31,4 +31,46 @@ public class EstudianteController {
            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error, no se pudo dar de alta el estudiante. Controle sus campos");
        }
    }
+
+   @GetMapping("/estudiantesOrdenadosPorApellido")
+    public ResponseEntity<?>getEstudiantesOrdenadosPorApellido(){
+       try{
+            return ResponseEntity.status(HttpStatus.OK).body(this.estudianteServicio.getEstudiantesOrdenadosPorApellido());
+       }
+       catch (Exception e){
+           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error, no hay estudiantes");
+       }
+   }
+
+   @GetMapping("/estudiantePorLibreta/{libreta}")
+   public ResponseEntity<?>getEstudiantePorLibreta(@PathVariable int libreta){
+       try{
+           return ResponseEntity.status(HttpStatus.OK).body(this.estudianteServicio.getEstudiantePorLibreta(libreta));
+       }
+       catch (Exception e){
+           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error, no se encontro el estudiante");
+       }
+   }
+
+    @GetMapping("/estudiantesPorGenero/{genero}")
+    public ResponseEntity<?>getEstudiantesPorGenero(@PathVariable String genero){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(this.estudianteServicio.getEstudiantesPorGenero(genero));
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error, no hay estudiantes");
+        }
+    }
+
+    @GetMapping("/{id_carrera}/{ciudad}")
+    public ResponseEntity<?>getEstudiantesPorCarreraYPorCiudad(@PathVariable int id_carrera,@PathVariable String ciudad){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(this.estudianteServicio.getEstudiantesPorCarreraYPorCiudad(id_carrera,ciudad));
+        }
+        catch (Exception e){
+            System.out.println("ERRORORR:" + e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error, no hay estudiantes en esa carrera");
+        }
+    }
+
 }

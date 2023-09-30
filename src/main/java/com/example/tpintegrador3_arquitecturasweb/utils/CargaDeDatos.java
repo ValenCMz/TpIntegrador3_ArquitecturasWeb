@@ -56,7 +56,7 @@ public class CargaDeDatos {
             throw new RuntimeException(e);
         }
         for (CSVRecord row: parser){
-            estudianteCarreraRepositorio.save(new EstudianteCarrera(new CarreraEstudianteKey(Integer.valueOf(row.get("id_carrera")),Integer.valueOf(row.get("id_estudiante"))),carreraRepositorio.getPorId(Long.valueOf(row.get("id_carrera"))),estudianteRepositorio.getPorId(Long.valueOf(row.get("id_estudiante"))),Integer.valueOf(row.get("inscripcion")),Integer.valueOf(row.get("graduacion")),Integer.valueOf(row.get("antiguedad"))));
+            estudianteCarreraRepositorio.save(new EstudianteCarrera(new CarreraEstudianteKey(Integer.valueOf(row.get("id_carrera")),Integer.valueOf(row.get("id_estudiante"))),carreraRepositorio.getPorId(Long.valueOf(row.get("id_carrera"))),estudianteRepositorio.getPorId(Long.valueOf(row.get("id_estudiante"))),Integer.valueOf(row.get("antiguedad")),Integer.valueOf(row.get("inscripcion")),Integer.valueOf(row.get("graduacion"))));
         }
 
 

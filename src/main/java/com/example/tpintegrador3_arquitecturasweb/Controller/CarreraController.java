@@ -37,7 +37,7 @@ public class CarreraController {
         }
     }
 
-    @GetMapping("/carrerasConInscriptos")
+    @GetMapping("/ConInscriptos")
     public ResponseEntity<?> getCarrerasConInscriptos(){
         try {
             return ResponseEntity.status(HttpStatus.OK).body(this.carreraServicio.getCarrerasConInscriptos());
@@ -45,12 +45,5 @@ public class CarreraController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error, no se pudo dar de alta la carrera. Controle sus campos");
         }
     }
-    @GetMapping("/reporte")
-    public ResponseEntity<?> getReporteDeCarreras(){
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(this.carreraServicio.getReporteDeCarreras());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error, no se pudo generar el reporte");
-        }
-    }
+
 }

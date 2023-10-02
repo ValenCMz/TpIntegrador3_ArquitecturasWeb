@@ -37,4 +37,23 @@ public class EstudianteCarreraController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error, no se pudo crear la relacion");
         }
     }
+
+    @GetMapping("/carrera/{id_carrera}/ciudad/{ciudad}")
+    public ResponseEntity<?>getEstudiantesPorCarreraYPorCiudad(@PathVariable int id_carrera,@PathVariable String ciudad){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(this.estudianteCarreraServicio.getEstudiantesPorCarreraYPorCiudad(id_carrera,ciudad));
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error, no hay estudiantes en esa carrera");
+        }
+    }
+
+    @GetMapping("/reporte")
+    public ResponseEntity<?> getReporteDeCarreras(){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(this.estudianteCarreraServicio.getReporteDeCarreras());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error, no se pudo generar el reporte");
+        }
+    }
 }

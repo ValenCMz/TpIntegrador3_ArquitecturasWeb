@@ -32,7 +32,7 @@ public class EstudianteController {
        }
    }
 
-   @GetMapping("/estudiantesOrdenadosPorApellido")
+   @GetMapping("/OrdenadosPorApellido")
     public ResponseEntity<?>getEstudiantesOrdenadosPorApellido(){
        try{
             return ResponseEntity.status(HttpStatus.OK).body(this.estudianteServicio.getEstudiantesOrdenadosPorApellido());
@@ -42,7 +42,7 @@ public class EstudianteController {
        }
    }
 
-   @GetMapping("/estudiantePorLibreta/{libreta}")
+   @GetMapping("/libreta/{libreta}")
    public ResponseEntity<?>getEstudiantePorLibreta(@PathVariable int libreta){
        try{
            return ResponseEntity.status(HttpStatus.OK).body(this.estudianteServicio.getEstudiantePorLibreta(libreta));
@@ -52,7 +52,7 @@ public class EstudianteController {
        }
    }
 
-    @GetMapping("/estudiantesPorGenero/{genero}")
+    @GetMapping("/genero/{genero}")
     public ResponseEntity<?>getEstudiantesPorGenero(@PathVariable String genero){
         try{
             return ResponseEntity.status(HttpStatus.OK).body(this.estudianteServicio.getEstudiantesPorGenero(genero));
@@ -62,15 +62,6 @@ public class EstudianteController {
         }
     }
 
-    @GetMapping("/{id_carrera}/{ciudad}")
-    public ResponseEntity<?>getEstudiantesPorCarreraYPorCiudad(@PathVariable int id_carrera,@PathVariable String ciudad){
-        try{
-            return ResponseEntity.status(HttpStatus.OK).body(this.estudianteServicio.getEstudiantesPorCarreraYPorCiudad(id_carrera,ciudad));
-        }
-        catch (Exception e){
-            System.out.println("ERRORORR:" + e);
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error, no hay estudiantes en esa carrera");
-        }
-    }
+
 
 }

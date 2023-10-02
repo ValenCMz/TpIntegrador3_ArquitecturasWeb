@@ -9,9 +9,9 @@ public class CarreraDTO {
 
     private String nombre;
 
-    private Long cantidadDeInscriptos;
+    private Integer cantidadDeInscriptos;
 
-    public CarreraDTO(int id, String nombre, Long cantidadDeInscriptos) {
+    public CarreraDTO(int id, String nombre, Integer cantidadDeInscriptos) {
         this.id = id;
         this.nombre = nombre;
         this.cantidadDeInscriptos = cantidadDeInscriptos;

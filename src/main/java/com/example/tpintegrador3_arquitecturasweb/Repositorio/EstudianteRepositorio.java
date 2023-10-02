@@ -26,6 +26,5 @@ public interface EstudianteRepositorio extends JpaRepository<Estudiante,Long> {
     @Query("SELECT e FROM Estudiante e WHERE e.genero LIKE :genero")
     public List<Estudiante> getEstudiantesPorGenero(String genero);
 
-    @Query("SELECT NEW com.example.tpintegrador3_arquitecturasweb.DTO.EstudiantePorCarreraDTO(e.numeroDeDocumento, concat(e.nombre, ' ',e.apellido),e2.carrera.nombre,e.ciudadDeResidencia) FROM Estudiante e JOIN e.carreras e2 WHERE e2.carrera.id = :id_carrera AND e.ciudadDeResidencia LIKE :ciudad")
-    public List<EstudiantePorCarreraDTO>getEstudiantesPorCarreraYPorCiudad(int id_carrera, String ciudad);
+
 }

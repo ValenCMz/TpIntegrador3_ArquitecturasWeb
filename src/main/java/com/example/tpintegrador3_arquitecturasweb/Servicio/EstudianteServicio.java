@@ -63,9 +63,6 @@ public class EstudianteServicio implements BaseService<Estudiante> {
     public List<EstudianteDTO> getEstudiantesPorGenero(String genero){
         return this.estudianteRepositorio.getEstudiantesPorGenero(genero).stream().map(e->new EstudianteDTO(e.getNumeroDeDocumento(),e.getNombre() + " " + e.getApellido(),e.getNumeroDeLibretaUniversitaria(),e.getGenero())).collect(Collectors.toList());
     }
-    @Transactional
-    public List<EstudiantePorCarreraDTO> getEstudiantesPorCarreraYPorCiudad(int id_carrera, String ciudad){
-        return this.estudianteRepositorio.getEstudiantesPorCarreraYPorCiudad(id_carrera,ciudad);
-    }
+
 
 }

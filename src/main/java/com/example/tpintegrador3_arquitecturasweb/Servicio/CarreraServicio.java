@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("CarreraServicio")
@@ -26,7 +27,7 @@ public class CarreraServicio implements BaseService<Carrera>{
     @Override
     @Transactional
     public Carrera findById(Long id) throws Exception {
-        return null;
+        return this.carreraRepositorio.getPorId(id);
     }
 
     @Override
@@ -49,11 +50,17 @@ public class CarreraServicio implements BaseService<Carrera>{
 
     @Transactional
     public List<CarreraDTO>getCarrerasConInscriptos(){
-        return this.carreraRepositorio.getCarrerasConInscriptos();
+        List<Carrera>carreras = this.carreraRepositorio.getCarrerasConInscriptos();
+        List<Integer>cantidades = this.carreraRepositorio.cantidadCarrerasConInscriptos();
+        List<CarreraDTO>toReturn = new ArrayList<>();
+
+        for(int i = 0; i<carreras.size();i++){
+            Carrera carrera = carreras.get(i);
+            Integer cantidad = cantidades.get(i);
+            toReturn.add(new CarreraDTO(carrera.getId(),carrera.getNombre(),cantidad));
+        }
+
+        return toReturn;
     }
 
-    @Transactional
-    public List<CarreraReporteDTO>getReporteDeCarreras(){
-        return this.carreraRepositorio.getReporteDeCarreras();
-    }
 }
